@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<section class="blog-area section-gap">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 pb-30 header-text">
+                <h1>Our Recent Notes</h1>
+                <p>
+                    Creat , Update , And Share Your Notes With Others.
+                </p>
+                <a href="{%url 'home:edit_note' one_note.slug one_note.id %}"><button>Edit A New Note</button></a>
+            </div>
+        </div>
+<div class="row">
+    
+    <div class="single-blog col-lg-4 col-md-4">
+
+        
+            {% if one_note.img %}
+            <img class="f-img img-fluid mx-auto" src="{{one_note.img.url}}"  alt="">
+        {% else %}
+        <img class="f-img img-fluid mx-auto" src="{% static 'site static/img/no_img.png' %}" alt="">
+        {% endif %}
+        
+        <h4>
+            {{one_note.title}}
+        </h4>
+        <p>{{ one_note.content }}</p>
+        <div class="bottom d-flex justify-content-between align-items-center flex-wrap">
+            <div>
+                <img class="img-fluid" src="{%static 'site-static/img/user.png'%}" alt="">
+                <a href="#"><span>{{user.username}}</span></a>
+            </div>
+            <div class="meta">
+                {{one_note.created}}
+                <span class="lnr lnr-heart"></span> 15
+                <span class="lnr lnr-bubble"></span> 04
+            </div>
+        </div>
+    </div>
+    
+    
+</div>
+</div>
+</section>
+{% endblock body %}
