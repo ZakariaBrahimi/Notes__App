@@ -3,7 +3,7 @@
 {% block body %}
 
 
-<form style="padding: 250px;" method="POST">
+<form style="padding: 250px;" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{form|crispy}}
     <button type="submit" class="btn btn-primary">Add A Note.</button>

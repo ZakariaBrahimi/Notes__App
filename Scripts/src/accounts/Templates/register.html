@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+
+<form style="padding: 250px;" method="POST">
+    {% csrf_token %}
+    {{form|crispy}}
+    <button type="submit" class="btn btn-primary">Create An Account</button>
+    <p>Do You have an account !! <a href="{%url 'login'%}">Login</a></p>
+
+</form>
+
+<!-- 
+<script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
+<script>paypal.Buttons().render('body');</script> -->
+{% endblock body %}

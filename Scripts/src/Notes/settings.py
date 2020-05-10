@@ -38,8 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles', 
     'crispy_forms',
+    'django_filters',
+    'rest_framework',
     'Notes_app',
     'accounts',
+    'api_example',
+    'django_formset',
 ]
 
 MIDDLEWARE = [
@@ -117,6 +121,21 @@ USE_L10N = True
 USE_TZ = True
 
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# Host for sending e-mail.
+EMAIL_HOST = 'smtp.gmail.com'
+
+# Port for sending e-mail.
+EMAIL_PORT = 587
+
+EMAIL_USE_TLS = True
+# Optional SMTP authentication information for EMAIL_HOST.
+EMAIL_HOST_USER = 'brahimi.zakaria.abdessamed@gmail.com'
+EMAIL_HOST_PASSWORD = 'aze1232000'
+
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
@@ -132,4 +151,4 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'home:profile'
 
-LOGOUT_REDIRECT_URL = 'accounts:login'
+LOGOUT_REDIRECT_URL = 'login'

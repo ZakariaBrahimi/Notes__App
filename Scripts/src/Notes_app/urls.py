@@ -9,6 +9,8 @@ urlpatterns = [
     url(r'^add_note/$', views.add_note, name='add_note'),
     url(r'^edit_note/(?P<slug>[-\w]+)/(?P<edit_id>\d+)/$', views.edit_note, name='edit_note'),
     url(r'^profile/$', views.profile, name='profile'),
+    url(r'^delete/(?P<note_id>\d+)/$', views.delete, name='delete'),
+    
     
     
 ]

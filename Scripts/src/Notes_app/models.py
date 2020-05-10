@@ -6,7 +6,7 @@ import datetime
 
 # Create your models here.
 class Note(models.Model):
-    user    = models.ForeignKey(User, on_delete=models.CASCADE)
+    user    = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     slug    = models.SlugField(blank=True, null=True)
     title   = models.CharField(max_length=50)
     content = models.TextField()
@@ -28,7 +28,7 @@ class Note(models.Model):
         return self.title
 
 class Profile(models.Model):
-    user_img = models.ImageField(upload_to='user_img', blank=True, null=True)
+    user_img = models.ImageField(upload_to='user_img',blank=False, null=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField()
     #my_notes = models.ForeignKey(Note, on_delete=models.CASCADE)

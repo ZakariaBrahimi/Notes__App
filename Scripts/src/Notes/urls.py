@@ -17,10 +17,27 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import url
+from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView, LoginView, LogoutView, PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView,  PasswordResetCompleteView
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='admin'),
     path('', include('Notes_app.urls', namespace='home')),
     path('', include('accounts.urls', namespace='accounts')),
+    path('', include('api_example.urls', namespace='api')),
+    path('', include('django_formset.urls', namespace='fomset')),
+    
+
+    
+    # path('accounts/', include('django.contrib.auth.urls')), Everything About User log in / out and reset password's user  
+    url(r'^login/$', LoginView.as_view(template_name='registrations/login.html'), name='login'),
+    url(r'^logout/$', LogoutView.as_view() , name='logout'),
+    url(r'^password_change/$', PasswordChangeView.as_view(template_name='registrations/password_change_form.html') , name='password_change'),
+    url(r'^password_change_done/$', PasswordChangeDoneView.as_view(template_name='registrations/password_change_done.html') , name='password_change_done'),
+    url(r'^reset_password/$', PasswordResetView.as_view(template_name='registrations/password_reset_form.html') , name='password_reset'),
+    url(r'^reset_password_sent/$', PasswordResetDoneView.as_view(template_name='registrations/password_reset_done.html') , name='password_reset_done'),
+    url(r'^reset/<uidb64>/<token>$', PasswordResetConfirmView.as_view(template_name='registrations/password_reset_confirm.html') , name='password_reset_confirm'),
+    url(r'^reset_password_complete$', PasswordResetCompleteView.as_view(template_name='registrations/password_reset_complete.html') , name='password_reset_complete'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

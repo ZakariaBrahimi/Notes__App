@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block body %}
   
@@ -11,7 +12,9 @@
                     <h1 class="text-uppercase">
                         Creat Awesome Notes .. Everywhere
                     </h1>
+                <a href="{%url 'accounts:register'%}">
                     <button class="primary-btn2 mt-20 text-uppercase ">Get Started<span class="lnr lnr-arrow-right"></span></button>
+                </a>
                 </div>
                 <div class="col-lg-6 d-flex align-self-end img-right">
                     <img class="img-fluid" src="{%static 'site-static/img/header1.png'%}" style="width: 450px " alt="">
@@ -29,8 +32,21 @@
                 <p>
                     Creat , Update , And Share Your Notes With Others.
                 </p>
-                <a href=" {% url 'home:add_note' %} "><button>Add A New Note</button></a>
+                {% if user.is_authenticated %}
+                <a class="btn btn-primary" href=" {% url 'home:add_note' %} ">Add A New Note</a>
+            {%endif%}
             </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                
+        <form style="margin: 200px;" action="" method="get">
+            {% csrf_token %}
+            {{filter.form|crispy}}
+            <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+    
+</div>
         </div>
         <div class="row">
             {%for note in home_notes%}
@@ -39,7 +55,7 @@
     {% if note.img %}
     <img class="f-img img-fluid mx-auto" src="{{note.img.url}}"  alt="">
 {% else %}
-<img class="f-img img-fluid mx-auto" src="{% static 'site static/img/no_img.png' %}" alt="">
+<img class="f-img img-fluid mx-auto" src="{% static 'site-static/img/no_img.png' %}" alt="">
 {% endif %}
 </a>
                 <h4>
@@ -47,8 +63,14 @@
                 </h4>
                 <p>{{ note.content }}</p>
                 <div class="bottom d-flex justify-content-between align-items-center flex-wrap">
-                    <div><a href="#">
+                    <div><a href="{% url 'home:profile' %}">
+                        
+                        {% if profile.user_img %}
+                        <img class="img-fluid" style="width: 40px; height: 40px;" src="{{profile.user_img.url}}" alt="">
+                        {% else %}
+                            
                         <img class="img-fluid" src="{%static 'site-static/img/user.png'%}" alt="">
+                        {% endif %}
                         <span>{{note.user.username}}</span></a>
                     </div>
                     <div class="meta">
@@ -58,8 +80,16 @@
                     </div>
                 </div>
             </div>
-            {% endfor %}
+            {%empty%}
+            <div class="text-center mb-5">
+
+            <h1>Empty</h1>
         </div>
+            {% endfor %}
+            
+        </div>
+        
     </div>
+    {% include 'pagination.html' %}
 </section>
 {% endblock body %}

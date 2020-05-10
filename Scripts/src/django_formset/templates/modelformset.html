@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+
+<form style="padding: 250px;" method="POST" >
+    {%csrf_token%}
+    {{model_formset|crispy}}
+    <button style="margin-top: 30px;" type="submit" class="btn btn-primary">Add All Notes.</button>
+</form>
+
+
+
+{% endblock body %}

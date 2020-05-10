@@ -46,12 +46,12 @@
 									<a href="{%url 'home:home_page' %}">Home</a>
 									<a href="{%url 'home:user_notes' %}">My Notes</a>
 									<a href="{%url 'home:profile' %}">Profile</a>
-									<a href="{%url 'accounts:logout' %}">Logout</a>
+									<a href="{%url 'logout' %}">Logout</a>
 										{% else %}
 										
 										<a href="{%url 'home:home_page' %}">Home</a>
-										<a href="{%url 'accounts:login' %}">Login</a>
-										<a href="#">Singup</a>
+										<a href="{%url 'login' %}">Login</a>
+										<a href="{%url 'accounts:register' %}">Singup</a>
 									
 									{% endif %}
 								</nav>

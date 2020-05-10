@@ -9,10 +9,18 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
-<div class="container">
+<div class="container" style="margin: 200px;">
     <div class="span3 well">
         <center>
-        <a href="#aboutModal" data-toggle="modal" data-target="#myModal"><img src="{{profile.user_img.url}}" name="aboutme" width="140" height="140" class="img-circle"></a>
+        <a href="#aboutModal" data-toggle="modal" data-target="#myModal">
+            
+            {% if profile.user_img %}
+            <img src="{{profile.user_img.url}}" name="aboutme" width="140" height="140" class="img-circle"></a>
+                {%else%}
+                <img src="{%static 'site-static/img/no-img.jpg'%}" name="aboutme" width="140" height="140" class="img-circle"></a>
+
+            {% endif %}
+                
         <h3>{{profile.user.username}}</h3>
         
 		</center>
@@ -20,6 +28,7 @@
             <p class="text-left"><strong>Bio: </strong><br>
                 {{profile.bio}}                    <br>
             </center>
+            <a class="btn btn-warning" href="{%url 'password_change'%}">Password Change</a>
             </div></div>
 
 {% endblock body %}

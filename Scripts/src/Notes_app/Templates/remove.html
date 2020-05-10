@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+<form style="margin: 200px;" action="{% url 'home:delete' note.id %}" method="POST">
+    {% csrf_token %}
+    <p>Are you sure you want to delete this Note?</p>
+    
+
+<input class="btn btn-danger m-3" type="submit" name="confirm"/>
+<a class="btn btn-warning" href="{%url 'home:home_page'%}">Cancel </a>
+
+
+</form>
+{% endblock body %}
