@@ -6,4 +6,5 @@ class NoteForm(forms.ModelForm):
         fields = '__all__'
         # TODO: exclude= ['user']
         # exclude = ['img']
+        # don't forget this
 
